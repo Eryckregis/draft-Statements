@@ -2,6 +2,7 @@ package com.statementapi.draft.statements.services;
 
 import com.statementapi.draft.statements.entities.Declaracao;
 import com.statementapi.draft.statements.repositories.DeclaracaoRepository;
+import com.statementapi.draft.statements.services.exceptions.DeclaracaoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,7 +46,7 @@ public class DeclaracaoService {
 
     public Declaracao buscar(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Declaracao não encontrado"));
+                .orElseThrow(() -> new DeclaracaoException("Declaracao não encontrado"));
     }
 
     public byte[] baixar(Long id) throws IOException {
